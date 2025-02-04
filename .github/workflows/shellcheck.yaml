@@ -11,10 +11,16 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# ============================================================================ #
+#                              S h e l l C h e c k
+# ============================================================================ #
+
+# Validate any shell scripts found in the repo
+
 ---
 name: ShellCheck
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master

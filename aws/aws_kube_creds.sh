@@ -26,8 +26,6 @@ Generates kubectl credentials and contexts for all AWS EKS clusters in the curre
 
 This is fast way to get set up in new environments, or even just add any new EKS clusters to your existing \$HOME/.kube/config
 
-Requires AWS CLI to be set up and configured, as well as jq
-
 WARNING: AWS CLI switches your kubectl context to the last cluster you get credentials for. This can lead to race conditions between other kubectl scripts if they have not forked and isolated their \$KUBECONFIG. Do not run this while other naive kubectl commands and scripts are running otherwise those non-isolated commands may fire against the wrong kubernetes cluster. See kubectl.sh for more info
 
 Can supply arguments to be passed to AWS CLI to set things like region eg.
@@ -35,14 +33,15 @@ Can supply arguments to be passed to AWS CLI to set things like region eg.
     ${0##*/} --region eu-west-2
 
 
-$usage_aws_cli_required
+$usage_aws_cli_jq_required
 
 
 See also:
 
-    kubectl.sh         - isolates kube config to fix kubectl commands to the given cluster to prevent race conditions from applying kubectl changes to the wrong cluster
-    aws_kubectl.sh     - same as above but also gets the credential
-    gke_kube_creds.sh  - same as this script but for GCP GKE clusters
+    kubectl.sh             - isolates kube config to fix kubectl commands to the given cluster to prevent race conditions from applying kubectl changes to the wrong cluster
+    aws_kubectl.sh         - same as above but also gets the credential
+    gke_kube_creds.sh      - same as this script but for GCP GKE clusters
+    rancher_kube_creds.sh  - same as this script but for Rancher Kubernetes clusters
 "
 
 # used by usage() in lib/utils.sh

@@ -11,10 +11,14 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# ============================================================================ #
+#                                    K i c s
+# ============================================================================ #
+
 ---
 name: Kics
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master

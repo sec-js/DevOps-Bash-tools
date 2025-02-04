@@ -11,10 +11,14 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
----
-name: Codeowners
+# ============================================================================ #
+#                              C o d e O w n e r s
+# ============================================================================ #
 
-on:
+---
+name: CodeOwners
+
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master

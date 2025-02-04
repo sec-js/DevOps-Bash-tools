@@ -35,6 +35,7 @@ setup_file(){
 
 setup_file .bashrc
 setup_file .bash_profile
+setup_file .bash_logout
 
 setup_file .zshrc
 setup_file .zprofile
@@ -54,23 +55,30 @@ if [ -n "${FORCE:-}" ]; then
     opts="-f"
 fi
 
+HOME="${HOME:-$(cd && pwd)}"
+
 for filename in $conf_files; do
     if [[ "$filename" =~ / ]]; then
-        dirname="${filename%/*}"
-        dirname2="${dirname#configs}"
-        dirname2="${dirname2#/}"
+        srcdir="${filename%/*}"
+        destdir="${srcdir#configs}"
+        destdir="${destdir##/}"
+        destdir="${destdir%%/}"
         filename="${filename##*/}"
-        mkdir -pv ~/"$dirname2"
+        sourcepath="$PWD${srcdir+/$srcdir}/$filename"  # if dirname, insert /dirname in middle
+        destpath="$HOME${destdir+/"$destdir"/}"        # if dirname, append /dirname to dest
+        sourcepath="${sourcepath/\/\//\/}"
+        destpath="${destpath/\/\//\/}"
+        mkdir -pv "$destpath"
         # want opt expansion
         # shellcheck disable=SC2086
-        ln -sv $opts -- "$PWD/$dirname/$filename" ~/"$dirname2"/ || :
+        ln -sv $opts -- "$sourcepath" "$destpath" || :
     else
         # want opt expansion
         # shellcheck disable=SC2086
         ln -sv $opts -- "$PWD/$filename" ~ || continue
         # if we link .vimrc then run the vundle install and get plugins to prevent vim errors every startup
         if [ "$filename" = .vimrc ]; then
-            "$srcdir/../setup/install_vundle.sh" || :
+            "$srcdir/../install/install_vundle.sh" || :
         fi
     fi
 done

@@ -11,10 +11,16 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# ============================================================================ #
+#                                    J S O N
+# ============================================================================ #
+
+# Validate any JSON files found in the repo
+
 ---
 name: JSON
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master

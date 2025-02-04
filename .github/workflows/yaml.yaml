@@ -11,10 +11,16 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# ============================================================================ #
+#                                    Y A M L
+# ============================================================================ #
+
+# Validate any YAML files found in the repo
+
 ---
 name: YAML
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master

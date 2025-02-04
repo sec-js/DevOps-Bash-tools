@@ -11,10 +11,16 @@
 #  https://www.linkedin.com/in/HariSekhon
 #
 
+# ============================================================================ #
+#                                     X M L
+# ============================================================================ #
+
+# Validate any XML files found in the repo
+
 ---
 name: XML
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master
